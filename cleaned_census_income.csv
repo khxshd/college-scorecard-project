@@ -1,0 +1,53 @@
+stateName,medianHouseholdIncome,incomeMarginOfError,stateFips,STABBR
+Alabama,62027,400,01,AL
+Alaska,89336,1374,02,AK
+Arizona,76872,414,04,AZ
+Arkansas,58773,503,05,AR
+California,96334,298,06,CA
+Colorado,92470,483,08,CO
+Connecticut,93760,669,09,CT
+Delaware,82855,1234,10,DE
+District of Columbia,106287,1803,11,DC
+Florida,71711,282,12,FL
+Georgia,74664,431,13,GA
+Hawaii,98317,980,15,HI
+Idaho,74636,877,16,ID
+Illinois,81702,363,17,IL
+Indiana,70051,293,18,IN
+Iowa,73147,438,19,IA
+Kansas,72639,453,20,KS
+Kentucky,62417,401,21,KY
+Louisiana,60023,491,22,LA
+Maine,71773,660,23,ME
+Maryland,101652,518,24,MD
+Massachusetts,101341,539,25,MA
+Michigan,71149,286,26,MI
+Minnesota,87556,396,27,MN
+Mississippi,54915,586,28,MS
+Missouri,68920,368,29,MO
+Montana,69922,768,30,MT
+Nebraska,74985,575,31,NE
+Nevada,75561,714,32,NV
+New Hampshire,95628,1073,33,NH
+New Jersey,101050,527,34,NJ
+New Mexico,62125,608,35,NM
+New York,84578,372,36,NY
+North Carolina,69904,346,37,NC
+North Dakota,75949,1002,38,ND
+Ohio,69680,287,39,OH
+Oklahoma,63603,419,40,OK
+Oregon,80426,573,41,OR
+Pennsylvania,76081,310,42,PA
+Rhode Island,86372,1274,44,RI
+South Carolina,66818,504,45,SC
+South Dakota,72421,805,46,SD
+Tennessee,67097,360,47,TN
+Texas,76292,265,48,TX
+Utah,91750,634,49,UT
+Vermont,78024,1357,50,VT
+Virginia,90974,485,51,VA
+Washington,94952,476,53,WA
+West Virginia,57917,607,54,WV
+Wisconsin,75670,402,55,WI
+Wyoming,74815,1225,56,WY
+Puerto Rico,25096,232,72,PR
