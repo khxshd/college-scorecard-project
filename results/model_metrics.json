@@ -1,0 +1,13 @@
+{
+  "regression_r2_in_sample": 0.3291407746229982,
+  "regression_intercept": -1247.0511207351337,
+  "regression_observations": 52,
+  "debt_graduation_correlation": 0.35759924949518657,
+  "debt_income_graduation_correlation": -0.011568985159584884,
+  "debt_correlation_observations": 52,
+  "cluster_observations": 52,
+  "cluster_features_scaled": false,
+  "cluster_random_state": 42,
+  "income_group_low_upper_bound": 52159.66666666667,
+  "income_group_middle_upper_bound": 79223.33333333333
+}

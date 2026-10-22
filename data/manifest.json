@@ -1,0 +1,67 @@
+{
+  "raw_scorecard": {
+    "path": "data/raw/Most-Recent-Cohorts-Institution.csv.gz",
+    "source": "https://collegescorecard.ed.gov/data/",
+    "snapshot_archive_name": "Most-Recent-Cohorts-Institution_10032025.zip",
+    "uncompressed_bytes": 103114316,
+    "uncompressed_sha256": "6840020dc014f874ce497ba7517629ce72cf9c8726fc89a1639becb1522269bc",
+    "compressed_sha256": "66532732c74dfdc8c5795d5080b29f76c0e272a21a56198c4b32e40993066cac",
+    "rows": 6429,
+    "columns": 3306,
+    "note": "Original institution-level public dataset used by the project. Gzip compression is lossless. The archive filename identifies the downloaded snapshot, not a single observation year for every variable."
+  },
+  "cleaned_snapshots": [
+    {
+      "path": "cleaned_scorecard.csv",
+      "rows": 6429,
+      "columns": [
+        "UNITID",
+        "INSTNM",
+        "STABBR",
+        "ZIP",
+        "CONTROL",
+        "TUITIONFEE_IN",
+        "TUITIONFEE_OUT",
+        "DEBT_MDN",
+        "ADM_RATE",
+        "SAT_AVG",
+        "GRAD_RATE"
+      ],
+      "sha256": "fa46e2ba7ce575aead4d4fe934f5613f1aa22a6a852f91b0ccb4924c50768304"
+    },
+    {
+      "path": "cleaned_census_income.csv",
+      "rows": 52,
+      "columns": [
+        "stateName",
+        "medianHouseholdIncome",
+        "incomeMarginOfError",
+        "stateFips",
+        "STABBR"
+      ],
+      "sha256": "da4f2dd5fcbbe602d8d4aedf66d92c2f9fa894e512e604caf5317561af4d4390"
+    },
+    {
+      "path": "cleaned_html_data.csv",
+      "rows": 52,
+      "columns": [
+        "State or Territory",
+        "Population over the age of 25",
+        "With a High School Diploma or higher(Population)",
+        "With a High School Diploma or higher(Percent)",
+        "With a Bachelor's Degree or higher(Population)",
+        "With a Bachelor's Degree or higher(Percent)",
+        "With an Advanced Degree(Population)",
+        "With an Advanced Degree(Percent)",
+        "STABBR"
+      ],
+      "sha256": "7f29b05f44c7a23161e5e1fafd98c38cafe4a1badbee0ea8c496a61a4d377bed"
+    }
+  ],
+  "reproduced_with": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "matplotlib": "3.11.2",
+    "sklearn": "1.9.1"
+  }
+}

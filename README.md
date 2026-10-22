@@ -1,26 +1,66 @@
-# College Scorecard: College Costs and State Education Patterns
+# CS2316: College Costs, Student Debt, and State Education Patterns
 
-A CS2316 data science project by **Khush Desai and Bhakti Gajjar**, completed in Spring 2026.
+A Spring 2026 data science project by **Khush Desai and Bhakti Gajjar**.
 
-The project combines institution-level College Scorecard records with state household income and educational attainment to explore tuition, student debt, admissions, graduation rates, and affordability across U.S. states.
+How do college tuition and student debt compare with household income and educational attainment across the United States? This project combines College Scorecard institution records, Census household income estimates, and state educational attainment data. It uses Python, pandas, NumPy, Beautiful Soup, Matplotlib, and scikit-learn for collection, cleaning, aggregation, regression, and clustering.
 
-## Project materials
+## Start here
 
-- [Final analysis notebook](PhaseIII_DesaiGajjar58.ipynb): five insights, linear regression, K-means clustering, and three visualizations, with original saved outputs.
-- [Data collection notebook](phaseII.ipynb): CSV parsing, Census API collection, HTML scraping, and cleaning.
-- [One-page poster](docs/poster.pdf) and [presentation](docs/presentation.pdf).
-- Three cleaned datasets: 6,429 institution records, 52 income records, and 52 educational attainment records.
-- [Recorded presentation](https://youtu.be/fM9PhJFS2rw), as linked in the original notebook.
+| Material | Contents |
+| --- | --- |
+| [Final notebook](PhaseIII_DesaiGajjar58.ipynb) | Original analysis, five insights, three charts, explanations, and saved tables/outputs |
+| [Collection notebook](phaseII.ipynb) | CSV cleaning, Census API collection, HTML scraping, and data preparation |
+| [Results and tables](docs/results.md) | Readable findings, model statistics, rankings, and cluster summaries |
+| [All result CSVs](results/) | State table, rankings, model predictions, cluster assignments, and chart data |
+| [Poster](docs/poster.pdf) | Original one-page project summary |
+| [Presentation](docs/presentation.pdf) | Original 21-slide presentation |
+| [Data guide](docs/data.md) | Sources, definitions, units, missing values, snapshot details, and raw data instructions |
+| [Data manifest](data/manifest.json) | File hashes, record counts, and package versions used for reproduction |
+| [Recorded presentation](https://youtu.be/fM9PhJFS2rw) | Link supplied in the original final notebook |
 
-## Analysis
+## Findings
 
-1. Rank states by average in-state tuition relative to median household income.
-2. Compare average public and private tuition within states.
-3. Examine debt, debt-to-income ratios, and graduation rates.
-4. Model average in-state tuition using income and bachelor's degree attainment.
-5. Group states into three clusters using tuition, debt, income, and attainment.
+The analysis uses **6,429 institutions**. The merged table retains 59 jurisdiction codes; regression and clustering use 52 complete observations, covering the 50 states, Washington, DC, and Puerto Rico.
 
-![Actual versus predicted tuition](figures/visual3.png)
+- Vermont has the highest average in-state tuition relative to median household income: **53.38%**. This aggregate indicator is not an individual student's net price.
+- Vermont also has the largest private nonprofit versus public tuition gap: approximately **$38,643**.
+- Average institutional debt and graduation rate have a correlation of **0.3576**; debt relative to household income and graduation rate have a correlation of **-0.0116**.
+- A regression using income and bachelor's attainment explains **32.91%** of in-sample tuition variation across 52 observations. This is not a held-out accuracy estimate.
+- The original K-means model forms three groups from tuition, debt, income, and attainment. Its features are unscaled, so dollar-valued variables dominate distance calculations.
+
+See the [results](docs/results.md) for numerical tables and interpretation limits.
+
+## Graphs
+
+### Average admission rate and student debt
+
+![Average student debt against average admission rate](figures/visual1.png)
+
+Each point is a jurisdiction with available data. The line summarizes an association between institutional averages.
+
+### Household income and advanced degree attainment
+
+![Advanced degree attainment by household income group](figures/visual2.png)
+
+Income groups divide the observed income range into three equal-width intervals. The original chart's term "graduates" refers to adult residents with an advanced degree, not the institutional graduation rate.
+
+### Actual and predicted tuition
+
+![Actual versus predicted average in-state tuition](figures/visual3.png)
+
+Predictions use the same observations used to fit the model. The diagonal represents perfect agreement.
+
+## Included data
+
+| File | Records |
+| --- | --- |
+| [Cleaned Scorecard](cleaned_scorecard.csv) | 6,429 institutions, 11 fields |
+| [Cleaned Census income](cleaned_census_income.csv) | 52 jurisdictions, 5 fields |
+| [Cleaned educational attainment](cleaned_html_data.csv) | 52 jurisdictions, 9 fields |
+| [Full original Scorecard CSV, compressed](data/raw/Most-Recent-Cohorts-Institution.csv.gz) | 6,429 institutions, 3,306 fields; lossless gzip |
+| [Merged analysis](results/state_analysis.csv) | 59 jurisdiction rows, 16 fields, including missing values |
+
+These are published institution statistics and state aggregates. Institution ZIP codes and locations describe colleges, not project authors or individual students. The [manifest](data/manifest.json) records the original raw CSV's SHA-256.
 
 ## Run locally
 
@@ -34,20 +74,16 @@ python -m pip install -r requirements.txt
 python run_analysis.py
 ```
 
-The runner executes the original final notebook's analysis cells against the included cleaned CSVs. It skips Colab mounting and live data collection, and writes three charts and `state_analysis.csv` to `generated/`.
+The runner executes the original final notebook's analysis against the included cleaned snapshots, skips Colab mounting and live collection, and writes three charts plus all numerical exports to `generated/`. Published tables in `results/` are a checked-in reproduction snapshot. Package versions used for reproduction are in the manifest.
 
-To inspect the notebooks interactively, run `jupyter lab`. The original final notebook begins with a Google Colab Drive mount and an absolute Drive directory. For local analysis, skip that mount and the data collection cells, and start at **SETUP FOR INSIGHTS** with the repository as the working directory.
+For Jupyter, run `jupyter lab`. In the final notebook, skip the Colab mount and collection cells, then start at **SETUP FOR INSIGHTS** with the repository as the working directory. Original code and saved outputs are preserved; Colab session metadata has been removed.
 
-To repeat the raw data collection, obtain `Most-Recent-Cohorts-Institution.csv` from College Scorecard and adjust the original file paths. Live API responses and Wikipedia table layouts can change; the bundled cleaned snapshots support reproducing the submitted analysis.
+The [data guide](docs/data.md) explains how to extract the original raw CSV. Live web responses can change; supplied snapshots reproduce the submitted analysis without network access.
 
-## Data sources
+## Sources and limitations
 
-- [U.S. Department of Education College Scorecard](https://collegescorecard.ed.gov/data/): institution-level tuition, debt, admissions, SAT, and completion data.
-- [U.S. Census ACS 5-year API](https://api.census.gov/data.html): median household income (`B19013_001E`) and margin of error (`B19013_001M`). The notebook queries 2023; its original source list links the 2022 variable documentation.
-- [Wikipedia educational attainment by state](https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_educational_attainment): bachelor's and advanced degree attainment.
+Sources: [College Scorecard](https://collegescorecard.ed.gov/data/), [2023 Census ACS API](https://api.census.gov/data/2023/acs/acs5.html), and [Wikipedia educational attainment by state](https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_educational_attainment).
 
-## Reproduction notes
+This exploratory course project uses unweighted institution averages, differing source periods, and some imputed values. Associations do not establish causation. "Private" in the sector comparison means private nonprofit (`CONTROL = 2`). The original collection code has loop-variable mistakes in admission/SAT imputation and rounding; the submitted cleaned snapshots are retained rather than silently rewritten. Read the [data guide](docs/data.md) before interpreting or extending the results.
 
-The original notebook analysis and submitted PDFs are preserved. The local runner is an added convenience. The analysis uses state averages and measures associations rather than causal effects. K-means uses the original unscaled features, so its groups are sensitive to measurement units. The original raw-data parser has loop-variable mistakes in some admission/SAT imputation and rounding steps; the runner uses the submitted cleaned snapshots without changing them.
-
-Notebook metadata identifying Colab sessions was removed. Source notebooks, extracted PDF text, repository files, and Git history were checked for credential patterns before upload. Videos, checkpoints, and the large raw CSV are excluded from Git.
+The poster and slides preserve the submitted wording. The notes here clarify model scope and terminology. Public materials were reviewed for credentials, private contact details, notebook metadata, PDF metadata/links, and Git history. Videos, checkpoints, exams, homework, and unrelated personal files are excluded.
